@@ -18,6 +18,8 @@ function addDays(date, days) {
 function commitOnDate(date, times) {
     const formattedDate = date.toISOString();
     for (let i = 0; i < times; i++) {
+        fs.appendFileSync('README.md', '.');
+        execSync(`git add README.md`);
         execSync(
             `set "GIT_AUTHOR_DATE=${formattedDate}" && set "GIT_COMMITTER_DATE=${formattedDate}" && git commit --allow-empty -m "pixel"`
         );
